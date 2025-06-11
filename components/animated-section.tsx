@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react"
 interface AnimatedSectionProps {
   children: React.ReactNode
   className?: string
-  animation?: "fadeInUp" | "fadeInLeft" | "fadeInRight" | "fadeIn"
+  animation?: "fadeInUp" | "fadeInLeft" | "fadeInRight" | "fadeIn" | "slideInUp" | "zoomIn" | "rotateIn"
   delay?: number
 }
 
@@ -38,19 +38,25 @@ export function AnimatedSection({ children, className = "", animation = "fadeInU
     if (!isVisible) {
       switch (animation) {
         case "fadeInUp":
-          return `${baseClass} opacity-0 translate-y-8`
+          return `${baseClass} opacity-0 translate-y-12 scale-95`
         case "fadeInLeft":
-          return `${baseClass} opacity-0 -translate-x-8`
+          return `${baseClass} opacity-0 -translate-x-12 scale-95`
         case "fadeInRight":
-          return `${baseClass} opacity-0 translate-x-8`
+          return `${baseClass} opacity-0 translate-x-12 scale-95`
         case "fadeIn":
-          return `${baseClass} opacity-0`
+          return `${baseClass} opacity-0 scale-95`
+        case "slideInUp":
+          return `${baseClass} opacity-0 translate-y-20`
+        case "zoomIn":
+          return `${baseClass} opacity-0 scale-50`
+        case "rotateIn":
+          return `${baseClass} opacity-0 rotate-180 scale-50`
         default:
-          return `${baseClass} opacity-0 translate-y-8`
+          return `${baseClass} opacity-0 translate-y-12 scale-95`
       }
     }
 
-    return `${baseClass} opacity-100 translate-y-0 translate-x-0`
+    return `${baseClass} opacity-100 translate-y-0 translate-x-0 scale-100 rotate-0`
   }
 
   return (

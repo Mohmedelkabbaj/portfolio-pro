@@ -3,11 +3,14 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Mail, Phone, MapPin, Github, ExternalLink, Download, ChevronDown } from "lucide-react"
+import { Mail, Phone, MapPin, Github, ExternalLink, Download, ChevronDown, Code, Zap, Rocket } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { ContactForm } from "@/components/contact-form"
 import { AnimatedSection } from "@/components/animated-section"
 import { SmoothScroll } from "@/components/smooth-scroll"
+import { FloatingElements } from "@/components/floating-elements"
+import { AnimatedBackground } from "@/components/animated-background"
+import { Card3D } from "@/components/3d-card"
 
 export default function Portfolio() {
   const skills = {
@@ -24,6 +27,7 @@ export default function Portfolio() {
       tech: ["C", "Shell Programming", "System Calls"],
       github: "https://github.com/Mohmedelkabbaj/minishell",
       demo: null,
+      icon: <Code className="h-6 w-6" />,
     },
     {
       title: "3D GAME (cub3D)",
@@ -32,6 +36,7 @@ export default function Portfolio() {
       tech: ["C", "Graphics Programming", "miniLibX"],
       github: "https://github.com/Mohmedelkabbaj/cub3D",
       demo: null,
+      icon: <Zap className="h-6 w-6" />,
     },
     {
       title: "INTERNET RELAY CHAT (ft_irc)",
@@ -40,6 +45,7 @@ export default function Portfolio() {
       tech: ["C++", "Network Programming", "IRC Protocol"],
       github: "https://github.com/Mohmedelkabbaj/ft_irc",
       demo: null,
+      icon: <Rocket className="h-6 w-6" />,
     },
     {
       title: "CONTAINER ORCHESTRATION (inception)",
@@ -48,6 +54,7 @@ export default function Portfolio() {
       tech: ["Docker", "Docker Compose", "NGINX", "WordPress", "MariaDB"],
       github: "https://github.com/Mohmedelkabbaj/inception",
       demo: "https://inception-demo.vercel.app",
+      icon: <Code className="h-6 w-6" />,
     },
     {
       title: "WEBSITE (ft_transcendence)",
@@ -56,6 +63,7 @@ export default function Portfolio() {
       tech: ["HTML", "CSS", "JavaScript", "Django", "WebSockets"],
       github: "https://github.com/Mohmedelkabbaj/ft_transcendence",
       demo: "https://transcendence-pong.vercel.app",
+      icon: <Zap className="h-6 w-6" />,
     },
   ]
 
@@ -110,34 +118,49 @@ Soft Skills:
     <>
       <SmoothScroll />
       <ThemeToggle />
+      <FloatingElements />
+      <AnimatedBackground />
 
-      <div className="min-h-screen bg-white dark:bg-black transition-colors">
+      <div className="min-h-screen bg-white dark:bg-black transition-colors relative">
         {/* Hero Section */}
         <section
           id="home"
-          className="relative overflow-hidden bg-gradient-to-r from-black to-gray-900 dark:from-gray-900 dark:to-black text-white"
+          className="relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-purple-900 dark:from-gray-900 dark:via-black dark:to-purple-900 text-white min-h-screen flex items-center"
         >
           <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative container mx-auto px-4 py-20 lg:py-32">
+
+          {/* Animated mesh background */}
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-transparent animate-pulse-slow"></div>
+            <div className="absolute inset-0 bg-gradient-to-l from-purple-600/20 to-transparent animate-pulse-slow delay-2000"></div>
+          </div>
+
+          <div className="relative container mx-auto px-4 py-20 lg:py-32 z-10">
             <AnimatedSection animation="fadeIn">
               <div className="flex flex-col lg:flex-row items-center gap-12">
                 <div className="flex-1 text-center lg:text-left">
-                  <AnimatedSection animation="fadeInLeft" delay={200}>
-                    <h1 className="text-4xl lg:text-6xl font-bold mb-4">Elkabbaj Mohamed</h1>
+                  <AnimatedSection animation="slideInUp" delay={200}>
+                    <h1 className="text-4xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent animate-gradient">
+                      Elkabbaj Mohamed
+                    </h1>
                   </AnimatedSection>
                   <AnimatedSection animation="fadeInLeft" delay={400}>
-                    <p className="text-xl lg:text-2xl text-gray-300 mb-6">Software Engineer</p>
+                    <p className="text-xl lg:text-3xl text-purple-300 mb-6 animate-pulse-subtle">Software Engineer</p>
                   </AnimatedSection>
                   <AnimatedSection animation="fadeInLeft" delay={600}>
-                    <p className="text-lg text-gray-400 mb-8 max-w-2xl">
+                    <p className="text-lg text-gray-300 mb-8 max-w-2xl leading-relaxed">
                       Passionate software engineer with expertise in systems programming, web development, and container
                       orchestration. Currently studying at 1337 School (42 Network) with hands-on experience in building
                       complex applications from scratch.
                     </p>
                   </AnimatedSection>
-                  <AnimatedSection animation="fadeInUp" delay={800}>
+                  <AnimatedSection animation="zoomIn" delay={800}>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                      <Button size="lg" className="bg-purple-600 hover:bg-purple-700" asChild>
+                      <Button
+                        size="lg"
+                        className="bg-purple-600 hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/25 animate-button-glow"
+                        asChild
+                      >
                         <a href="#contact">
                           <Mail className="mr-2 h-4 w-4" />
                           Contact Me
@@ -146,7 +169,7 @@ Soft Skills:
                       <Button
                         size="lg"
                         variant="outline"
-                        className="border-white text-white hover:bg-white hover:text-black"
+                        className="border-white text-white hover:bg-white hover:text-black transform hover:scale-105 transition-all duration-300 shadow-lg"
                         asChild
                       >
                         <a href="https://github.com/Mohmedelkabbaj" target="_blank" rel="noopener noreferrer">
@@ -154,24 +177,30 @@ Soft Skills:
                           View GitHub
                         </a>
                       </Button>
-                      <Button size="lg" variant="secondary" onClick={downloadResume}>
+                      <Button
+                        size="lg"
+                        variant="secondary"
+                        onClick={downloadResume}
+                        className="transform hover:scale-105 transition-all duration-300 shadow-lg"
+                      >
                         <Download className="mr-2 h-4 w-4" />
                         Download Resume
                       </Button>
                     </div>
                   </AnimatedSection>
                 </div>
-                <AnimatedSection animation="fadeInRight" delay={400}>
+                <AnimatedSection animation="rotateIn" delay={400}>
                   <div className="flex-shrink-0">
-                    <div className="relative">
-                      <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+                    <div className="relative group">
+                      <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-purple-400 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
+                      <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl transform group-hover:scale-105 transition-all duration-500">
                         <img
                           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/mel-kabb-yYRH5uB6dkLRlIBaVsHIa2uWVV121n.jpeg"
                           alt="Elkabbaj Mohamed"
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center animate-bounce">
+                      <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center animate-bounce shadow-lg">
                         <span className="text-2xl">👨‍💻</span>
                       </div>
                     </div>
@@ -188,23 +217,23 @@ Soft Skills:
         </section>
 
         {/* Contact Info Bar */}
-        <section className="bg-white dark:bg-gray-900 shadow-sm border-b dark:border-gray-700 transition-colors">
-          <div className="container mx-auto px-4 py-4">
-            <AnimatedSection animation="fadeInUp">
+        <section className="bg-white dark:bg-gray-900 shadow-lg border-b dark:border-gray-700 transition-colors relative z-10">
+          <div className="container mx-auto px-4 py-6">
+            <AnimatedSection animation="slideInUp">
               <div className="flex flex-wrap justify-center lg:justify-between items-center gap-6 text-sm text-gray-600 dark:text-gray-400">
-                <div className="flex items-center gap-2 hover:text-purple-600 transition-colors">
+                <div className="flex items-center gap-2 hover:text-purple-600 transition-all duration-300 transform hover:scale-105">
                   <Phone className="h-4 w-4 text-purple-600" />
                   <span>+212 771 854 392</span>
                 </div>
-                <div className="flex items-center gap-2 hover:text-purple-600 transition-colors">
+                <div className="flex items-center gap-2 hover:text-purple-600 transition-all duration-300 transform hover:scale-105">
                   <Mail className="h-4 w-4 text-purple-600" />
                   <span>mohamedqabbej55@gmail.com</span>
                 </div>
-                <div className="flex items-center gap-2 hover:text-purple-600 transition-colors">
+                <div className="flex items-center gap-2 hover:text-purple-600 transition-all duration-300 transform hover:scale-105">
                   <MapPin className="h-4 w-4 text-purple-600" />
                   <span>TAZA, STREET 11 JANUARY N75</span>
                 </div>
-                <div className="flex items-center gap-2 hover:text-purple-600 transition-colors">
+                <div className="flex items-center gap-2 hover:text-purple-600 transition-all duration-300 transform hover:scale-105">
                   <Github className="h-4 w-4 text-purple-600" />
                   <a
                     href="https://github.com/Mohmedelkabbaj"
@@ -221,11 +250,13 @@ Soft Skills:
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="py-16 lg:py-24 bg-white dark:bg-black">
+        <section id="skills" className="py-16 lg:py-24 bg-white dark:bg-black relative z-10">
           <div className="container mx-auto px-4">
-            <AnimatedSection>
+            <AnimatedSection animation="zoomIn">
               <div className="text-center mb-12">
-                <h2 className="text-3xl lg:text-4xl font-bold text-black dark:text-white mb-4">Technical Skills</h2>
+                <h2 className="text-3xl lg:text-5xl font-bold text-black dark:text-white mb-4 bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent">
+                  Technical Skills
+                </h2>
                 <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                   A comprehensive set of programming languages, technologies, and concepts I work with
                 </p>
@@ -233,193 +264,232 @@ Soft Skills:
             </AnimatedSection>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <AnimatedSection animation="fadeInUp" delay={200}>
-                <Card className="border-l-4 border-l-purple-600 hover:shadow-lg transition-shadow bg-white dark:bg-gray-900">
-                  <CardHeader>
-                    <CardTitle className="text-xl text-black dark:text-white">Programming Languages</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {skills.programming.map((skill) => (
-                        <Badge
-                          key={skill}
-                          variant="secondary"
-                          className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 hover:scale-105 transition-transform"
-                        >
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+              <AnimatedSection animation="fadeInLeft" delay={200}>
+                <Card3D>
+                  <Card className="border-l-4 border-l-purple-600 hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-900 transform hover:-translate-y-2">
+                    <CardHeader>
+                      <CardTitle className="text-xl text-black dark:text-white flex items-center gap-2">
+                        <Code className="h-5 w-5 text-purple-600" />
+                        Programming Languages
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-2">
+                        {skills.programming.map((skill, index) => (
+                          <Badge
+                            key={skill}
+                            variant="secondary"
+                            className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 hover:scale-110 transition-transform duration-300 animate-fade-in"
+                            style={{ animationDelay: `${index * 100}ms` }}
+                          >
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Card3D>
               </AnimatedSection>
 
               <AnimatedSection animation="fadeInUp" delay={400}>
-                <Card className="border-l-4 border-l-black dark:border-l-white hover:shadow-lg transition-shadow bg-white dark:bg-gray-900">
-                  <CardHeader>
-                    <CardTitle className="text-xl text-black dark:text-white">Technologies & Tools</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {skills.technologies.map((skill) => (
-                        <Badge
-                          key={skill}
-                          variant="secondary"
-                          className="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 hover:scale-105 transition-transform"
-                        >
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                <Card3D>
+                  <Card className="border-l-4 border-l-black dark:border-l-white hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-900 transform hover:-translate-y-2">
+                    <CardHeader>
+                      <CardTitle className="text-xl text-black dark:text-white flex items-center gap-2">
+                        <Zap className="h-5 w-5 text-purple-600" />
+                        Technologies & Tools
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-2">
+                        {skills.technologies.map((skill, index) => (
+                          <Badge
+                            key={skill}
+                            variant="secondary"
+                            className="bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 hover:scale-110 transition-transform duration-300 animate-fade-in"
+                            style={{ animationDelay: `${index * 100}ms` }}
+                          >
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Card3D>
               </AnimatedSection>
 
-              <AnimatedSection animation="fadeInUp" delay={600}>
-                <Card className="border-l-4 border-l-purple-600 hover:shadow-lg transition-shadow bg-white dark:bg-gray-900">
-                  <CardHeader>
-                    <CardTitle className="text-xl text-black dark:text-white">Core Concepts</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {skills.concepts.map((skill) => (
-                        <Badge
-                          key={skill}
-                          variant="secondary"
-                          className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 hover:scale-105 transition-transform"
-                        >
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+              <AnimatedSection animation="fadeInRight" delay={600}>
+                <Card3D>
+                  <Card className="border-l-4 border-l-purple-600 hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-900 transform hover:-translate-y-2">
+                    <CardHeader>
+                      <CardTitle className="text-xl text-black dark:text-white flex items-center gap-2">
+                        <Rocket className="h-5 w-5 text-purple-600" />
+                        Core Concepts
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-2">
+                        {skills.concepts.map((skill, index) => (
+                          <Badge
+                            key={skill}
+                            variant="secondary"
+                            className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 hover:scale-110 transition-transform duration-300 animate-fade-in"
+                            style={{ animationDelay: `${index * 100}ms` }}
+                          >
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Card3D>
               </AnimatedSection>
             </div>
 
             {/* Soft Skills & Languages */}
             <div className="grid md:grid-cols-2 gap-8 mt-8">
-              <AnimatedSection animation="fadeInLeft" delay={800}>
-                <Card className="hover:shadow-lg transition-shadow bg-white dark:bg-gray-900">
-                  <CardHeader>
-                    <CardTitle className="text-xl text-black dark:text-white">Soft Skills</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {["Communication", "Adaptability", "Reliable and Consistent", "Eager Learner"].map((skill) => (
-                        <Badge
-                          key={skill}
-                          variant="outline"
-                          className="hover:scale-105 transition-transform border-gray-300 dark:border-gray-600"
-                        >
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+              <AnimatedSection animation="rotateIn" delay={800}>
+                <Card3D>
+                  <Card className="hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-900 transform hover:-translate-y-2">
+                    <CardHeader>
+                      <CardTitle className="text-xl text-black dark:text-white">Soft Skills</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-2">
+                        {["Communication", "Adaptability", "Reliable and Consistent", "Eager Learner"].map(
+                          (skill, index) => (
+                            <Badge
+                              key={skill}
+                              variant="outline"
+                              className="hover:scale-110 transition-transform duration-300 border-gray-300 dark:border-gray-600 animate-fade-in"
+                              style={{ animationDelay: `${index * 150}ms` }}
+                            >
+                              {skill}
+                            </Badge>
+                          ),
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Card3D>
               </AnimatedSection>
 
-              <AnimatedSection animation="fadeInRight" delay={800}>
-                <Card className="hover:shadow-lg transition-shadow bg-white dark:bg-gray-900">
-                  <CardHeader>
-                    <CardTitle className="text-xl text-black dark:text-white">Languages</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-black dark:text-white">Arabic</span>
-                        <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                          Native
-                        </Badge>
+              <AnimatedSection animation="rotateIn" delay={1000}>
+                <Card3D>
+                  <Card className="hover:shadow-2xl transition-all duration-500 bg-white dark:bg-gray-900 transform hover:-translate-y-2">
+                    <CardHeader>
+                      <CardTitle className="text-xl text-black dark:text-white">Languages</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center animate-slide-in">
+                          <span className="text-black dark:text-white">Arabic</span>
+                          <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                            Native
+                          </Badge>
+                        </div>
+                        <div
+                          className="flex justify-between items-center animate-slide-in"
+                          style={{ animationDelay: "200ms" }}
+                        >
+                          <span className="text-black dark:text-white">English</span>
+                          <Badge variant="secondary">Intermediate</Badge>
+                        </div>
+                        <div
+                          className="flex justify-between items-center animate-slide-in"
+                          style={{ animationDelay: "400ms" }}
+                        >
+                          <span className="text-black dark:text-white">French</span>
+                          <Badge variant="secondary">Intermediate</Badge>
+                        </div>
                       </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-black dark:text-white">English</span>
-                        <Badge variant="secondary">Intermediate</Badge>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-black dark:text-white">French</span>
-                        <Badge variant="secondary">Intermediate</Badge>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </Card3D>
               </AnimatedSection>
             </div>
           </div>
         </section>
 
         {/* Education Section */}
-        <section id="education" className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900 transition-colors">
+        <section id="education" className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900 transition-colors relative z-10">
           <div className="container mx-auto px-4">
-            <AnimatedSection>
+            <AnimatedSection animation="zoomIn">
               <div className="text-center mb-12">
-                <h2 className="text-3xl lg:text-4xl font-bold text-black dark:text-white mb-4">Education</h2>
+                <h2 className="text-3xl lg:text-5xl font-bold text-black dark:text-white mb-4 bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent">
+                  Education
+                </h2>
               </div>
             </AnimatedSection>
 
             <div className="max-w-4xl mx-auto space-y-8">
-              <AnimatedSection animation="fadeInLeft">
-                <Card className="border-l-4 border-l-purple-600 hover:shadow-lg transition-all hover:scale-[1.02] bg-white dark:bg-gray-800">
-                  <CardHeader>
-                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-                      <div>
-                        <CardTitle className="text-xl text-black dark:text-white">1337 School (42 Network)</CardTitle>
-                        <CardDescription className="text-lg text-gray-600 dark:text-gray-400">
-                          Computer Software Engineering
-                        </CardDescription>
+              <AnimatedSection animation="slideInUp">
+                <Card3D>
+                  <Card className="border-l-4 border-l-purple-600 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] bg-white dark:bg-gray-800 transform hover:-translate-y-2">
+                    <CardHeader>
+                      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                        <div>
+                          <CardTitle className="text-xl text-black dark:text-white">1337 School (42 Network)</CardTitle>
+                          <CardDescription className="text-lg text-gray-600 dark:text-gray-400">
+                            Computer Software Engineering
+                          </CardDescription>
+                        </div>
+                        <Badge
+                          variant="outline"
+                          className="mt-2 lg:mt-0 bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900 dark:text-purple-200 animate-pulse-subtle"
+                        >
+                          2022 – Present
+                        </Badge>
                       </div>
-                      <Badge
-                        variant="outline"
-                        className="mt-2 lg:mt-0 bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900 dark:text-purple-200"
-                      >
-                        2022 – Present
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      Learned through hands-on practical projects and peer-to-peer learning methodology.
-                    </p>
-                  </CardContent>
-                </Card>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 dark:text-gray-400">
+                        Learned through hands-on practical projects and peer-to-peer learning methodology.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Card3D>
               </AnimatedSection>
 
-              <AnimatedSection animation="fadeInRight">
-                <Card className="border-l-4 border-l-black dark:border-l-white hover:shadow-lg transition-all hover:scale-[1.02] bg-white dark:bg-gray-800">
-                  <CardHeader>
-                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-                      <div>
-                        <CardTitle className="text-xl text-black dark:text-white">
-                          Specialized Technician Diploma
-                        </CardTitle>
-                        <CardDescription className="text-lg text-gray-600 dark:text-gray-400">
-                          Computer Development (Fairly Good)
-                        </CardDescription>
+              <AnimatedSection animation="slideInUp" delay={200}>
+                <Card3D>
+                  <Card className="border-l-4 border-l-black dark:border-l-white hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] bg-white dark:bg-gray-800 transform hover:-translate-y-2">
+                    <CardHeader>
+                      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                        <div>
+                          <CardTitle className="text-xl text-black dark:text-white">
+                            Specialized Technician Diploma
+                          </CardTitle>
+                          <CardDescription className="text-lg text-gray-600 dark:text-gray-400">
+                            Computer Development (Fairly Good)
+                          </CardDescription>
+                        </div>
+                        <Badge variant="outline" className="mt-2 lg:mt-0 border-gray-300 dark:border-gray-600">
+                          2020 – 2022
+                        </Badge>
                       </div>
-                      <Badge variant="outline" className="mt-2 lg:mt-0 border-gray-300 dark:border-gray-600">
-                        2020 – 2022
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      Two years of higher education after the Baccalaureate. This education provides a foundation in
-                      software development, database management, web technologies, and IT infrastructure.
-                    </p>
-                  </CardContent>
-                </Card>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 dark:text-gray-400">
+                        Two years of higher education after the Baccalaureate. This education provides a foundation in
+                        software development, database management, web technologies, and IT infrastructure.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Card3D>
               </AnimatedSection>
             </div>
           </div>
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-16 lg:py-24 bg-white dark:bg-black">
+        <section id="projects" className="py-16 lg:py-24 bg-white dark:bg-black relative z-10">
           <div className="container mx-auto px-4">
-            <AnimatedSection>
+            <AnimatedSection animation="zoomIn">
               <div className="text-center mb-12">
-                <h2 className="text-3xl lg:text-4xl font-bold text-black dark:text-white mb-4">Technical Projects</h2>
+                <h2 className="text-3xl lg:text-5xl font-bold text-black dark:text-white mb-4 bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent">
+                  Technical Projects
+                </h2>
                 <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                   A showcase of complex projects built from scratch, demonstrating expertise in systems programming and
                   web development
@@ -429,49 +499,61 @@ Soft Skills:
 
             <div className="grid lg:grid-cols-2 gap-8">
               {projects.map((project, index) => (
-                <AnimatedSection key={index} animation="fadeInUp" delay={index * 200}>
-                  <Card className="h-full hover:shadow-lg transition-all hover:scale-[1.02] group bg-white dark:bg-gray-900">
-                    <CardHeader>
-                      <CardTitle className="text-xl text-black dark:text-white group-hover:text-purple-600 transition-colors">
-                        {project.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-1 flex flex-col">
-                      <p className="text-gray-600 dark:text-gray-400 mb-4 flex-1">{project.description}</p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tech.map((tech) => (
-                          <Badge
-                            key={tech}
+                <AnimatedSection key={index} animation="rotateIn" delay={index * 200}>
+                  <Card3D>
+                    <Card className="h-full hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] group bg-white dark:bg-gray-900 transform hover:-translate-y-4">
+                      <CardHeader>
+                        <CardTitle className="text-xl text-black dark:text-white group-hover:text-purple-600 transition-colors flex items-center gap-3">
+                          <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                            {project.icon}
+                          </div>
+                          {project.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex-1 flex flex-col">
+                        <p className="text-gray-600 dark:text-gray-400 mb-4 flex-1 leading-relaxed">
+                          {project.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {project.tech.map((tech, techIndex) => (
+                            <Badge
+                              key={tech}
+                              variant="outline"
+                              className="text-xs hover:scale-110 transition-transform duration-300 border-gray-300 dark:border-gray-600 animate-fade-in"
+                              style={{ animationDelay: `${techIndex * 100}ms` }}
+                            >
+                              {tech}
+                            </Badge>
+                          ))}
+                        </div>
+                        <div className="flex gap-2">
+                          <Button
+                            size="sm"
                             variant="outline"
-                            className="text-xs hover:scale-105 transition-transform border-gray-300 dark:border-gray-600"
+                            asChild
+                            className="border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white transform hover:scale-105 transition-all duration-300"
                           >
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          asChild
-                          className="border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white"
-                        >
-                          <a href={project.github} target="_blank" rel="noopener noreferrer">
-                            <Github className="h-4 w-4 mr-2" />
-                            Code
-                          </a>
-                        </Button>
-                        {project.demo && (
-                          <Button size="sm" asChild className="bg-purple-600 hover:bg-purple-700">
-                            <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="h-4 w-4 mr-2" />
-                              Demo
+                            <a href={project.github} target="_blank" rel="noopener noreferrer">
+                              <Github className="h-4 w-4 mr-2" />
+                              Code
                             </a>
                           </Button>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
+                          {project.demo && (
+                            <Button
+                              size="sm"
+                              asChild
+                              className="bg-purple-600 hover:bg-purple-700 transform hover:scale-105 transition-all duration-300"
+                            >
+                              <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                                <ExternalLink className="h-4 w-4 mr-2" />
+                                Demo
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Card3D>
                 </AnimatedSection>
               ))}
             </div>
@@ -479,11 +561,13 @@ Soft Skills:
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900 transition-colors">
+        <section id="contact" className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900 transition-colors relative z-10">
           <div className="container mx-auto px-4">
-            <AnimatedSection>
+            <AnimatedSection animation="zoomIn">
               <div className="text-center mb-12">
-                <h2 className="text-3xl lg:text-4xl font-bold text-black dark:text-white mb-4">Get In Touch</h2>
+                <h2 className="text-3xl lg:text-5xl font-bold text-black dark:text-white mb-4 bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent">
+                  Get In Touch
+                </h2>
                 <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                   I'm always interested in new opportunities and challenging projects. Feel free to reach out if you'd
                   like to discuss potential collaborations.
@@ -491,23 +575,29 @@ Soft Skills:
               </div>
             </AnimatedSection>
 
-            <AnimatedSection animation="fadeInUp" delay={200}>
+            <AnimatedSection animation="slideInUp" delay={200}>
               <ContactForm />
             </AnimatedSection>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="bg-black dark:bg-gray-950 text-white py-12 transition-colors">
+        <footer className="bg-black dark:bg-gray-950 text-white py-12 transition-colors relative z-10">
           <div className="container mx-auto px-4 text-center">
-            <AnimatedSection>
-              <h3 className="text-2xl font-bold mb-4">Let's Work Together</h3>
+            <AnimatedSection animation="fadeIn">
+              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+                Let's Work Together
+              </h3>
               <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
                 I'm always interested in new opportunities and challenging projects. Feel free to reach out if you'd
                 like to discuss potential collaborations.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <Button size="lg" className="bg-purple-600 hover:bg-purple-700" asChild>
+                <Button
+                  size="lg"
+                  className="bg-purple-600 hover:bg-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-purple-500/25"
+                  asChild
+                >
                   <a href="mailto:mohamedqabbej55@gmail.com">
                     <Mail className="mr-2 h-4 w-4" />
                     mohamedqabbej55@gmail.com
@@ -516,7 +606,7 @@ Soft Skills:
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-black"
+                  className="border-white text-white hover:bg-white hover:text-black transform hover:scale-105 transition-all duration-300"
                   asChild
                 >
                   <a href="https://github.com/Mohmedelkabbaj" target="_blank" rel="noopener noreferrer">
